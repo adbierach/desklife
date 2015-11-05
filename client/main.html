@@ -10,12 +10,7 @@
 </head>
 
 <body>
-	<div class="container">
 <!-- 	{{#if currentUser}} -->
-		{{#if routinesState}}
-			{{ > dashboard}}
-			{{> routinesList}}
-		{{/if}}
 		{{#if exercisesState}}
 			{{> exercisesList}}
 		{{/if}}
@@ -30,21 +25,28 @@
 		{{>loginRegister}}
 	{{/if}} -->
 
-  	</div>
-  	<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+   	<script>
+ //  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+ //  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+ //  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+ //  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  ga('create', 'UA-69246292-1', 'auto');
-  ga('send', 'pageview');
+ //  ga('create', 'UA-69246292-1', 'auto');
+ //  ga('send', 'pageview');
 
-	</script>
+	 </script>
 </body>
+
+<template name="main">
+	<div class="container">
+		{{> yield}}
+	</div>
+</template>
 
 
 <template name="routinesList">
+{{> dashboard}}
 <div class="routines-container">
 	<header class="routines-header">
 		<div class="header-title align-center">Routines</div>
@@ -59,7 +61,7 @@
 	<ul class="routines-list-container">
 	{{#each routines}}
 		<li class="routine-list-item">
-			<div class="routine-num align-center {{#if completed}}completed{{/if}}">{{id}}<span class="gradient-scrim"></span></div>
+			<a href="routine/{{_id}}"><div class="routine-num align-center {{#if completed}}completed{{/if}}">{{id}}<span class="gradient-scrim"></span></div></a>
 		</li>
 	{{/each}}
 	</ul>

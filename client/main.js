@@ -36,9 +36,11 @@ if (Meteor.isClient) {
     routines: function() {
       //return Routines.find({}, {sort: {id: 1}});
 
-      var routinesData = Session.get('routinesData');
+      //var routinesData = Session.get('routinesData');
 
-      return routinesData;
+      //return routinesData;
+
+      return Routines.find({});
 
     },
 

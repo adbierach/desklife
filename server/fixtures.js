@@ -182,44 +182,141 @@ if(Routines.find().count() === 0) {
 		name: 'Upper',
 		description: 'Description of routine 1',
 		id: '1',
-		completed: false
+		exercises: [
+		{
+			name: 'face stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		},
+		{
+			name: 'face stretch2',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		}
+
+
+		]
 	});
 	Routines.insert({
 		name: 'Move',
 		description: 'Description of routine 2',
 		id: '2',
-		completed: false
+		exercises: [
+		{
+			name: 'face stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		},
+		{
+			name: 'face stretch2',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		}
+
+
+		]
 	});
 	Routines.insert({
 		name: 'Lower',
 		description: 'Description of routine 3',
 		id: "3",
-		completed: false
+		exercises: [
+		{
+			name: 'face stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		},
+		{
+			name: 'face stretch2',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		}
+
+
+		]
 	});
 	Routines.insert({
 		name: 'Upper',
 		description: 'Description of routine 1',
 		id: '4',
-		completed: false
+		exercises: [
+		{
+			name: 'face stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		},
+		{
+			name: 'face stretch2',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		}
+
+
+		]
 	});
 	Routines.insert({
 		name: 'Move',
 		description: 'Description of routine 2',
 		id: '5',
-		completed: false
+		exercises: [
+		{
+			name: 'face stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		},
+		{
+			name: 'face stretch2',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		}
+
+
+		]
 	});
 	Routines.insert({
 		name: 'Lower',
 		description: 'Description of routine 3',
 		id: "6",
-		completed: false
+		exercises: [
+		{
+			name: 'face stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		},
+		{
+			name: 'face stretch2',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/face_stretch.jpg',
+			duration: 20,
+			shortDescription: ''
+		}
+
+
+		]
 	});
-	Routines.insert({
-		name: 'Relax',
-		description: 'Description of routine 4',
-		id: '7',
-		completed: false
-	});
+
 
 
 }
