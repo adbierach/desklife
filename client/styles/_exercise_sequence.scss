@@ -1,0 +1,96 @@
+.timer-group {
+	bottom: 0;
+	width: 100%;
+	height: 12%;
+	background-color: $darkBlue;
+	position: absolute;
+}
+
+.timer {
+	font-size: 40px;
+	text-align: center;
+	color: $white;
+	position: absolute;
+	left: 20%;
+
+}
+
+
+.toggle-timer {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border: 3px solid $white;
+	position: absolute;
+	right: 20%;
+}
+
+
+.pause {
+	height: 50%;
+}
+
+.resume {
+	width: 0;
+	height: 0;
+	left: 56%;
+	border-style: solid;
+	border-width: 16px 0 16px 24px;
+	border-color: transparent transparent transparent #ffffff;
+}
+
+.close {
+	right: 20px;
+	width: 22px;
+}
+.active-exercise-wrapper {
+	width: 80%;
+	top: 45%;
+}
+.active-exercise-title {
+	font-size: 30px;
+	text-align: center;
+	margin-bottom: 5%;
+}
+
+.active-exercise-description {
+	font-size: 20px;
+	width: 100%;
+	text-align: center;
+	margin: 5% auto 0;
+	min-height: 30%; 
+}
+
+.active-exercise-image {
+	width: 100%;
+}
+
+.active-exercise-short {
+	font-size: 20px;
+	text-align: center;
+}
+.exit-sequence-modal {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-color: $gioGreen;
+	z-index: 1;
+}
+
+
+.exit-sequence-container {
+	width: 80%;
+	text-align: center;
+	color: $white;
+}
+
+.exit-sequence-title {
+	margin-bottom: 30px;
+}
+
+.exit-sequence-btn {
+	display: inline-block;
+	margin: 0 15px;
+	border: 2px solid $white;
+	padding: 5px 15px;
+}

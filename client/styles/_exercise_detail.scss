@@ -1,0 +1,42 @@
+
+.exercise-detail-header {
+	position: absolute;
+	z-index: 2;
+	top: 0;
+}
+.exercise-detail {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	max-width: 500px;
+	min-height: 100%;
+	background-color: $bgColor2;
+	z-index: 1;
+}
+
+.exercise-title {
+	width: 80%;
+	margin: 25% auto 5%;
+}
+
+.exercise-image {
+	width: 80%;
+	margin: 0 10%;
+}
+.exercise-text-group {
+	width: 80%;
+	margin: 0 auto 10%;
+}
+
+.exercise-text-title {
+	font-size: 36px;
+	margin-top: 10%;
+	margin-bottom: 5%;
+}
+
+.exercise-text {
+	font-size: 20px;
+}
+
+

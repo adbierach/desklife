@@ -1,0 +1,109 @@
+/*routines list*/
+.routines-container {
+	width: 100%;
+	height: 100%;
+	transform: translateX(0);
+	transition: transform $animation;
+	background-color: $bgColor1;
+	z-index: 1;
+
+	&.opened {
+		transform: translateX(70%);
+	}
+}
+
+.routines-header {
+	margin-bottom: 5%;
+}
+
+.header-title {
+	font-size: 20px;
+}
+.toggle-dashboard {
+	width: 60px;
+	height: 100%;
+	position: relative;
+}
+.hamburger {
+	left: 15px;
+    width: 20px;
+    height: 26px;
+
+    span {
+        display: block;
+        position: absolute;
+        height: 3px;
+        width: 100%;
+        background: $white;
+        border-radius: 2px;
+        left: 0;
+    }
+
+    span:nth-child(1) {
+        top: 5px;
+    }
+    span:nth-child(2) {
+        top: 12px;
+    }
+    span:nth-child(3) {
+        top: 19px;
+    }
+}
+
+.routines-list-container {
+	height: 80%;
+}
+
+.connecting-line {
+	width: 5px;
+	height: 90%;
+	top: 10%;
+	background-color: $darkBlue;
+	left: 20%;
+}
+
+.message {
+	right: 5%;
+	font-size: 18px;
+	width: 55%;
+	//text-align: center;
+}
+
+.routine-list-item {
+	height: 17.66%;
+	position: relative;
+}
+
+.routine-num {
+	line-height: 47px;
+	width: 55px;
+	height: 55px;
+	border-radius: 50%;
+	border: solid 4px $darkBlue;
+	margin: 0 auto;
+	background-color: $bgColor1;
+	text-align: center;
+	color: $white;
+	z-index: 1;
+	left: 20%;
+
+	& span {
+		width: 100%;
+	    height: 100%;
+	    background-color: rgba(0,0,0, 0.1);
+	    position: absolute;
+	    left: 0;
+	    border-radius: 50%;
+	    z-index: -1;
+	}
+
+}
+
+.routine-num.completed {
+	background-color: $darkBlue;
+	color: $white;
+
+	& span {
+		display: none;
+	}
+}

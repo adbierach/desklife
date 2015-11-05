@@ -1,0 +1,58 @@
+/*exercises list*/
+
+
+.selected-routine-num {
+	font-size: 36px;
+}
+
+
+.exercises-list-container {
+	width: 90%;
+	text-align: center;
+	top: 45%
+}
+.exercise-list-title {
+	border-bottom: 1px solid;
+	padding-bottom: 5px;
+	width: 200px;
+	margin: 0 auto 10px;
+	//font-size: 30px;
+	font-weight: bold;
+}
+
+.start-routine {
+	bottom: 10%;
+	border: 2px solid;
+    padding: 5px 15px;
+    font-size: 36px;
+}
+
+.exercise {
+	font-size: 28px;
+	margin: 2% 0;
+}
+
+.wrapper {
+	text-align: center;
+	width: 80%;
+}
+
+.view-exercise {
+	font-size: 48px;
+}
+
+.back-button-container {
+	width: 60px;
+	height: 100%;
+	position: relative;
+	top: 0;
+	left: 0;
+}
+
+.back-button {
+    width: 20px;
+    height: 20px;
+    border-left: 2px solid white;
+    border-bottom: 2px solid white;
+    transform: translate(-50%,-50%) rotate(45deg);
+}

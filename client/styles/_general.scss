@@ -1,0 +1,85 @@
+
+
+li,div, h1 {
+	font-size: 28px;
+	margin: 0;
+}
+
+html, body {
+	margin: 0;
+	height: 100%;
+	color: $primaryText;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	overflow-x: hidden;
+	font-family: 'Lato', sans-serif;
+
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+li {
+	list-style: none;
+	padding: 0;
+}
+
+button {
+	font-size: 30px;
+}
+
+p {
+	font-size: 28px;
+	margin: 0;
+}
+
+.container {
+	width: 100%;
+	max-width: 414px;
+	height: 100%;
+	max-height: 736px;
+	background-color:$bgColor1;
+	position: relative;
+}
+
+
+.align-center {
+	position: absolute;
+	transform: translate(-50%,-50%);
+	-webkit-transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
+}
+
+.align-horizontal {
+	transform: translateX(-50%);
+	-webkit-transform: translateX(-50%);
+	left: 50%;
+	position: absolute;
+}
+
+.align-vertical {
+	transform: translateY(-50%);
+	-webkit-transform: translateY(-50%);
+	top: 50%;
+	position: absolute;
+}
+
+
+header {
+	width: 100%;
+	height: 10%;
+	background-color: $headerColor;
+	position: relative;
+	color: $white;
+}
+
+
