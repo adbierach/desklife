@@ -191,6 +191,20 @@ if(Routines.find().count() === 0) {
 			shortDescription: ''
 		},
 		{
+			name: 'neck stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/neck_stretch.jpg',
+			duration: 10,
+			shortDescription: ''
+		},
+		{
+			name: 'quad stretch',
+			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
+			imagePath: '/images/quad_stretch.jpg',
+			duration: 10,
+			shortDescription: ''
+		},
+		{
 			name: 'face stretch2',
 			description: 'Take a deep breath, and on the exhale open your eyes and jaw as wide as you can and stick your tongue out.',
 			imagePath: '/images/face_stretch.jpg',

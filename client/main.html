@@ -11,16 +11,8 @@
 
 <body>
 <!-- 	{{#if currentUser}} -->
-		{{#if exercisesState}}
-			{{> exercisesList}}
-		{{/if}}
-		{{#if exerciseState}}
-			{{> exerciseDetail}}
-		{{/if}}
 
-		{{#if exerciseSequence}}
-			{{> activeExercise}}
-		{{/if}}
+		
 <!-- 	{{else}}
 		{{>loginRegister}}
 	{{/if}} -->
@@ -70,22 +62,25 @@
 </div>
 </template>
 
-<template name="exercisesList">
-	<header class="exercise-list-header">
-		<div class="back-button-container">
+<template name="routineDetail">
+	{{#if viewingExercise}}
+		{{> exerciseDetail}}
+	{{/if}}
+	<header class="routine-detail-header">
+		<a href="/"><div class="back-button-container">
 			<div class="back-button align-center"></div>
-		</div>
-		<div class="selected-routine-num align-center">{{selectedRoutine}}</div>
+		</div></a>
+		<div class="selected-routine-num align-center">{{id}}</div>
 	</header>
 	<div class="exercises-list-container align-center">
 		<div class="exercise-list-title">Exercises</div>
 		<ul class="exercises-list">
-		{{#each exercisesList}}
+		{{#each exercises}}
 			 <li class="exercise">{{name}}</li>
 		{{/each}}
 		</ul>
 	</div>
-	<div class="start-routine align-horizontal">Begin</div>	
+	<a href="/sequence/{{_id}}"><div class="start-routine align-horizontal">Begin</div></a>	
 </template>
 
 <template name="exerciseDetail">
@@ -107,18 +102,24 @@
 	</div>
 </template>
 
-
-<template name="activeExercise">
-	{{#if exitSequenceModal}}
-		<div class="exit-sequence-modal">
-			<div class="exit-sequence-container align-center">
-				<div class="exit-sequence-title">
-						Are you sure you want to exit this routine?
-				</div>
-				<div class="confirm-exit exit-sequence-btn">Yes</div>
-				<div class="return-to-routine exit-sequence-btn">No</div>
+<template name="exitSequenceModal">
+	<div class="exit-sequence-modal">
+		<div class="exit-sequence-container align-center">
+			<div class="exit-sequence-title">
+				Are you sure you want to exit this routine?
 			</div>
+			<a href="/"><div class="confirm-exit exit-sequence-btn">Yes</div></a>
+			<div class="return-to-routine exit-sequence-btn">No</div>
 		</div>
+	</div>
+</template>
+
+<template name="routineSequence">
+	{{#if viewingExercise}}
+		{{> exerciseDetail}}
+	{{/if}}
+	{{#if exitingSequence}}
+		{{> exitSequenceModal}}
 	{{/if}}
 	<header>	
 		<img class="close align-vertical" src="/images/close.png">

@@ -1,44 +1,10 @@
 
 if (Meteor.isClient) {
-  Session.setDefault('routinesState', true);
-  Session.setDefault('exercisesState', false);
-  Session.setDefault('exerciseState', false);
-  Session.setDefault('exerciseSequence', false);
-  Session.setDefault('selectedRoutineId', '1');
-  Session.setDefault('routinesData', [{id: '1', completed: false}, 
-      {id: '2', completed: false},
-      {id: '3', completed: false},
-      {id: '4', completed: false},
-      {id: '5', completed: false},
-      {id: '6', completed: false}]);
-
-
-  Template.body.helpers ({
-    routinesState : function () { 
-      return Session.get('routinesState');
-    },
-
-    exercisesState : function () {
-      return Session.get('exercisesState');
-    },
-
-    exerciseState : function () {
-      return Session.get('exerciseState');
-    },
-
-    exerciseSequence : function () {
-      return Session.get('exerciseSequence');
-    }
-  })
+  Session.setDefault('viewingExercise', false);
 
 
   Template.routinesList.helpers({
     routines: function() {
-      //return Routines.find({}, {sort: {id: 1}});
-
-      //var routinesData = Session.get('routinesData');
-
-      //return routinesData;
 
       return Routines.find({});
 
@@ -55,14 +21,14 @@ if (Meteor.isClient) {
       'It is good to have an end to journey toward; but it is the journey that matters, in the end. Congratulations!'
       ];
 
-      var routinesData = Session.get('routinesData');
+      //var routinesData = Session.get('routinesData');
       var routinesCompleted = 0;
 
-      routinesData.forEach(function(routine) {
-          if (routine.completed) {
-            routinesCompleted++;
-          }
-      }); 
+      // routinesData.forEach(function(routine) {
+      //     if (routine.completed) {
+      //       routinesCompleted++;
+      //     }
+      // }); 
 
       switch (routinesCompleted) {
         case 0:
@@ -93,23 +59,6 @@ if (Meteor.isClient) {
   });
 
   Template.routinesList.events({
-    'click .routine-num': function() {
-      console.log(this.id);
-      var selectedRoutineId = this.id;
-
-      //Session.set('selectedRoutine', selectedRoutine);
-      //note I'm doing the above so that I can update the status 
-      //for this routine to completed at the end of the sequence
-      //I may not need to store the routine object like this, there
-      //might be a better way to update the routines list view
-
-      Session.set('selectedRoutineId', selectedRoutineId);
-      Session.set('routinesState', false);
-      Session.set('exercisesState', true);
-
-      var routineNum = 'Routine #' + selectedRoutineId;
-      ga('send', 'event', routineNum, 'selected');
-    },
     'click .toggle-dashboard': function(event) {
         var $routinesContainer = $('.routines-container');
         if ($routinesContainer.hasClass('opened')) {
@@ -118,48 +67,29 @@ if (Meteor.isClient) {
           $routinesContainer.addClass('opened');    
         }
 
-        ga('send', 'event', 'Dashboard', 'opened');
+       // ga('send', 'event', 'Dashboard', 'opened');
 
 
       }
   });
-
-  Template.exercisesList.helpers({
-    exercisesList: function () {
-      var selectedRoutineId = Session.get('selectedRoutineId');
-      return Exercises.find({routines: selectedRoutineId});
-    },
-
-    selectedRoutine: function () {
-      return Session.get('selectedRoutineId');
+  Template.routineDetail.helpers({
+    viewingExercise : function () {
+      return Session.get('viewingExercise');
     }
-  });
+ });
 
-  Template.exercisesList.events({
+  Template.routineDetail.events({
     'click .exercise': function() {
 
       var selectedExercise = this.name;
 
       Session.set('selectedExercise', selectedExercise);
-      Session.set('exerciseState', true);
+      Session.set('viewingExercise', true);
 
-      ga('send', 'event', selectedExercise, 'list detail viewed');
+      //ga('send', 'event', selectedExercise, 'list detail viewed');
 
 
     },
-
-    'click .back-button-container': function() {
-      Session.set('exercisesState', false);
-      Session.set('routinesState', true);
-    },
-    'click .start-routine': function() {
-      Session.set('exercisesState', false);
-      Session.set('exerciseSequence', true);
-
-      var selectedRoutineId = Session.get('selectedRoutineId');
-      var routineNum = 'Routine #' + selectedRoutineId;
-      ga('send', 'event', routineNum, 'started');
-    }
 
   });
 
@@ -174,11 +104,27 @@ if (Meteor.isClient) {
 
   Template.exerciseDetail.events({
       'click .back-button-container': function() {
-        Session.set('exerciseState', false);
+        Session.set('viewingExercise', false);
     }
   });
 
-  Template.activeExercise.helpers({
+  Template.exitSequenceModal.events({
+    'click .return-to-routine': function() {
+      Session.set('exitingSequence', false);
+    },
+
+    'click .confirm-exit': function() {
+      Session.set('exitingSequence', false);
+      Session.set('exerciseSequence', false);
+      Session.set('routinesState',true);
+
+      var selectedRoutineId = Session.get('selectedRoutineId');
+      var routineNum = 'Routine #' + selectedRoutineId;
+      //ga('send', 'event', routineNum, 'abandoned');
+    }
+  });
+
+  Template.routineSequence.helpers({
     timer: function () {
       var time = Session.get('timer');
 
@@ -189,35 +135,35 @@ if (Meteor.isClient) {
       return time;
 
     },
+    viewingExercise : function () {
+      return Session.get('viewingExercise');
+    },
     activeExercise: function () {
-      var activeExercise = Session.get('activeExercise');
-      return Exercises.findOne({name: activeExercise});
+      var activeExerciseIndex = Session.get('activeExerciseIndex');
+      return this.exercises[activeExerciseIndex];
     },
 
     timerRunning: function () {
       return Session.get('timerRunning');
     },
 
-    exitSequenceModal: function () {
-      return Session.get('exitSequenceModal');
+    exitingSequence: function () {
+      return Session.get('exitingSequence');
     },
 
     totalExercises: function () {
-      var activeRoutine = Session.get('selectedRoutineId');
-      var activeExercises = Exercises.find({routines: activeRoutine}).fetch();
-      
-      return activeExercises.length;
+      return this.exercises.length;
     },
 
     exercisesCompleted: function () {
-      var exerciseIndex = Session.get('exerciseIndex');
-
-      return exerciseIndex;
+      var activeExerciseIndex = Session.get('activeExerciseIndex');
+      var exercisesCompleted = activeExerciseIndex + 1;
+      return exercisesCompleted;
     }
 
   });
 
-  Template.activeExercise.events({
+  Template.routineSequence.events({
     'click .pause, click .resume': function() {
       toggleTimer();
     },
@@ -231,9 +177,9 @@ if (Meteor.isClient) {
         toggleTimer();
       }
       Session.set('selectedExercise', selectedExercise);
-      Session.set('exerciseState', true);
+      Session.set('viewingExercise', true);
 
-      ga('send', 'event', selectedExercise, 'sequence detail viewed');
+      //ga('send', 'event', selectedExercise, 'sequence detail viewed');
 
     },
 
@@ -244,92 +190,33 @@ if (Meteor.isClient) {
         toggleTimer();
       }
 
-      Session.set('exitSequenceModal', true);
-    },
-
-    'click .confirm-exit': function() {
-      Session.set('exitSequenceModal', false);
-      Session.set('exerciseSequence', false);
-      Session.set('routinesState',true);
-
-      var selectedRoutineId = Session.get('selectedRoutineId');
-      var routineNum = 'Routine #' + selectedRoutineId;
-      ga('send', 'event', routineNum, 'abandoned');
-    },
-
-    'click .return-to-routine': function() {
-      Session.set('exitSequenceModal', false);
+      Session.set('exitingSequence', true);
     }
 
 
   });
-  Template.activeExercise.onCreated(function(){
-       Session.set('exerciseIndex', 0);
-       nextExercise();
-       interval = Meteor.setInterval(timeLeft, 1000);
-       Session.set('timerRunning', true);
-       //console.log(this);
-            
+  Template.routineSequence.onCreated(function(){
+      startSequence();
   });
 
-  Template.activeExercise.onDestroyed(function(){
+  Template.routineSequence.onDestroyed(function(){
       Meteor.clearInterval(interval);
-
-   
   });
 
+  function startSequence() {
+    var initialExerciseIndex = 0,
+    activeRoutine = Session.get('activeRoutine'),
+    initialExercise = activeRoutine.exercises[initialExerciseIndex];
 
-
-  function nextExercise(){
-    var activeRoutine = Session.get('selectedRoutineId'),
-    activeExercises = Exercises.find({routines: activeRoutine}).fetch(),
-    exerciseIndex = Session.get('exerciseIndex'),
-    activeExercise = activeExercises[exerciseIndex];
-
-    if (exerciseIndex < activeExercises.length) {
-      Session.set('activeExercise', activeExercise.name);
-      timer = activeExercise.duration;
-      exerciseIndex++;
-      Session.set('timer', timer);
-      Session.set('exerciseIndex', exerciseIndex);
-    }
-    else {
-      completeRoutine(activeRoutine);
-      Session.set('exerciseSequence', false);
-      Session.set('routinesState',true);
-    }
+    timer = initialExercise.duration; 
+    interval = Meteor.setInterval(sequenceTimer, 100);
+    
+    Session.set('timer', timer);
+    Session.set('activeExerciseIndex', initialExerciseIndex);
+    Session.set('timerRunning', true);
   }
 
-  function completeRoutine (routine) {
-    //Routines.update(routine, {$set: {completed: true}});
-    var routinesData = Session.get('routinesData');
-    routinesData.forEach(function(item) {
-      if (item.id === routine) {
-        item.completed = true; 
-      }
-    });
-
-    Session.set('routinesData', routinesData);
-
-    //GA to track routine completions
-    var selectedRoutineId = Session.get('selectedRoutineId');
-    var routineNum = 'Routine #' + selectedRoutineId;
-    ga('send', 'event', routineNum, 'completed');
-
-    var routinesCompleted = 0;
-    routinesData.forEach(function(routine) {
-        if (routine.completed) {
-          routinesCompleted++;
-        }
-    }); 
-
-    if (routinesCompleted === routinesData.length) {
-      ga('send', 'event', 'All Routines', 'completed');
-    }
-  }
-
-
-  function timeLeft() {
+  function sequenceTimer() {
     if (timer > 0) {
       timer--;
       Session.set("timer", timer);
@@ -338,24 +225,41 @@ if (Meteor.isClient) {
     }
   };
 
+  function nextExercise(){
+    var previousExerciseIndex = Session.get('activeExerciseIndex'),
+    upcomingExerciseIndex = previousExerciseIndex + 1;
+    activeRoutine = Session.get('activeRoutine'),
+    exerciseList = activeRoutine.exercises,
+    upcomingExercise = exerciseList[upcomingExerciseIndex];
+
+
+    if (upcomingExerciseIndex < exerciseList.length) {
+      timer = upcomingExercise.duration;
+      Session.set('timer', timer);
+      Session.set('activeExerciseIndex', upcomingExerciseIndex);
+    }
+    else {
+      completeRoutine(activeRoutine);
+    }
+  }
+
+  function completeRoutine (routine) {
+      Router.go('/');
+  }
+
+
+
   function toggleTimer() {
-
       var timerRunning = Session.get('timerRunning');
-
-      var selectedRoutineId = Session.get('selectedRoutineId');
-      var routineNum = 'Routine #' + selectedRoutineId;
 
       if (timerRunning) { 
         Session.set('timerRunning', false);
         Meteor.clearInterval(interval);
 
-        ga('send', 'event', routineNum, 'paused');
-
       } else {
         Session.set('timerRunning', true);
-        interval = Meteor.setInterval(timeLeft, 1000);
+        interval = Meteor.setInterval(sequenceTimer, 1000);
 
-        ga('send', 'event', routineNum, 'resumed');
       }
   };
   
