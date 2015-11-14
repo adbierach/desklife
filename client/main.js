@@ -1,12 +1,34 @@
-
-if (Meteor.isClient) {
+  
+  Meteor.subscribe('routines');
+  Meteor.subscribe('userData');
   Session.setDefault('viewingExercise', false);
 
 
   Template.routinesList.helpers({
     routines: function() {
+      var routines = Routines.find({}).fetch();
+      console.log(routines);
+      console.log(Meteor.user().routinesCompletedToday);
+      var routinesCompletedToday = Meteor.user().routinesCompletedToday;
+      var userRoutines = [];
 
-      return Routines.find({});
+      routines.forEach(function(routine) {
+        var routineId = routine._id;
+        var routineCompleted = false;
+
+        for (var i=0; i < routinesCompletedToday.length; i++) {
+          if (routinesCompletedToday[i] === routineId) {
+            routineCompleted = true;
+          }
+        }
+
+        routine.completed = routineCompleted;
+
+        userRoutines.push(routine);
+      });
+
+
+      return userRoutines;
 
     },
 
@@ -20,17 +42,10 @@ if (Meteor.isClient) {
       'This last one is fun.',
       'It is good to have an end to journey toward; but it is the journey that matters, in the end. Congratulations!'
       ];
+      var numRoutinesCompletedToday = Meteor.user().routinesCompletedToday.length;
 
-      //var routinesData = Session.get('routinesData');
-      var routinesCompleted = 0;
 
-      // routinesData.forEach(function(routine) {
-      //     if (routine.completed) {
-      //       routinesCompleted++;
-      //     }
-      // }); 
-
-      switch (routinesCompleted) {
+      switch (numRoutinesCompletedToday) {
         case 0:
           routinesMessage = routinesMessages[0];
           break;
@@ -244,6 +259,7 @@ if (Meteor.isClient) {
   }
 
   function completeRoutine (routine) {
+      Meteor.call('logCompletedRoutine', routine._id);
       Router.go('/');
   }
 
@@ -262,11 +278,6 @@ if (Meteor.isClient) {
 
       }
   };
-  
-
-
-}
-
 
 
 
