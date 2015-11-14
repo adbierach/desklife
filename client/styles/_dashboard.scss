@@ -9,10 +9,11 @@
 
 }
 
-.logout {
+.logout, .clear-routines {
 	text-align: center;
     margin-top: 15px;
     font-size: 25px;
+    color: $white;
 }
 .dashboard-message-group {
 	width: 100%;
