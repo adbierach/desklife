@@ -7,8 +7,6 @@
   Template.routinesList.helpers({
     routines: function() {
       var routines = Routines.find({}).fetch();
-      console.log(routines);
-      console.log(Meteor.user().routinesCompletedToday);
       var routinesCompletedToday = Meteor.user().routinesCompletedToday;
       var userRoutines = [];
 
@@ -21,15 +19,12 @@
             routineCompleted = true;
           }
         }
-
         routine.completed = routineCompleted;
 
         userRoutines.push(routine);
       });
 
-
       return userRoutines;
-
     },
 
     routinesMessage: function() {
@@ -95,8 +90,7 @@
 
   Template.routineDetail.events({
     'click .exercise': function() {
-
-      var selectedExercise = this.name;
+      var selectedExercise = this;
 
       Session.set('selectedExercise', selectedExercise);
       Session.set('viewingExercise', true);
@@ -110,10 +104,9 @@
 
   Template.exerciseDetail.helpers({
     exercise: function () {
-
       var selectedExercise = Session.get('selectedExercise');
 
-      return Exercises.findOne({name: selectedExercise});
+      return selectedExercise;
     }
   });
 
@@ -184,8 +177,7 @@
     },
 
     'click .view-exercise': function() {
-      
-      var selectedExercise = Session.get('activeExercise');
+      var selectedExercise = this;
       var timerRunning = Session.get('timerRunning');
       
       if (timerRunning) { 
