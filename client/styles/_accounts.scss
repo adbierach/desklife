@@ -53,6 +53,14 @@
 input {
 	border: 0;
 	display: block;	
+
+	&.error {
+		background-color:rgb(255, 231, 231);
+	}
+}
+
+*:focus {
+	outline: 0;
 }
 
 input[type="submit"] {
