@@ -210,7 +210,7 @@
       Meteor.clearInterval(interval);
   });
 
-  function startSequence() {
+  startSequence = function() {
     var initialExerciseIndex = 0,
     activeRoutine = Session.get('activeRoutine'),
     initialExercise = activeRoutine.exercises[initialExerciseIndex];
@@ -223,7 +223,7 @@
     Session.set('timerRunning', true);
   }
 
-  function sequenceTimer() {
+  sequenceTimer = function() {
     if (timer > 0) {
       timer--;
       Session.set("timer", timer);
@@ -232,7 +232,7 @@
     }
   };
 
-  function nextExercise(){
+  nextExercise = function() {
     var previousExerciseIndex = Session.get('activeExerciseIndex'),
     upcomingExerciseIndex = previousExerciseIndex + 1;
     activeRoutine = Session.get('activeRoutine'),
@@ -250,12 +250,13 @@
     }
   }
 
-  function completeRoutine (routine) {
+  completeRoutine = function(routine) {
       Meteor.call('logCompletedRoutine', routine._id);
       Router.go('/');
   }
 
-  function toggleTimer() {
+
+  toggleTimer = function() {
       var timerRunning = Session.get('timerRunning');
 
       if (timerRunning) { 
