@@ -216,7 +216,7 @@
     initialExercise = activeRoutine.exercises[initialExerciseIndex];
 
     timer = initialExercise.duration; 
-    interval = Meteor.setInterval(sequenceTimer, 100);
+    interval = Meteor.setInterval(sequenceTimer, 1000);
     
     Session.set('timer', timer);
     Session.set('activeExerciseIndex', initialExerciseIndex);
@@ -254,8 +254,6 @@
       Meteor.call('logCompletedRoutine', routine._id);
       Router.go('/');
   }
-
-
 
   function toggleTimer() {
       var timerRunning = Session.get('timerRunning');
