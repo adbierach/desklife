@@ -204,10 +204,23 @@
   });
   Template.routineSequence.onCreated(function(){
       startSequence();
+
+      //prevent screen from sleeping
+      if (Meteor.isCordova) {
+        window.plugins.insomnia.keepAwake();
+      }
   });
 
   Template.routineSequence.onDestroyed(function(){
       Meteor.clearInterval(interval);
+
+      //allow screen to sleep
+      if (Meteor.isCordova) {
+        //delay bc screen will fade immediately after sequence ends
+        setTimeout(function () {
+          window.plugins.insomnia.allowSleepAgain();
+        }, 20000)
+      }
   });
 
   startSequence = function() {
