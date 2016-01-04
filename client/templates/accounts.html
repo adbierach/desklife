@@ -1,45 +1,29 @@
-
-<template name="loginRegister">
-	<div class="welcome-message-container">
-		<div class="welcome-message align-center">
-			<div class="welcome-title">Welcome to Dailies!</div>
-			<div class="welcome-subtitle">Work smarter. Feel better.</div>
-		</div>
-	</div>
-	<div class="login-register-container">
-		<div class="buttons-container align-horizontal">
-			<div class="login-btn">Login</div>
-			<div class="register-btn">Signup</div>	
-		</div>
-		
-		<div class="form-container align-horizontal">
-
-			{{#if registering}}
-				{{> register}}
-			<!-- {{/if}}
-			{{#if loggingIn}} -->
-			{{else}}
-				{{> login}}
-			{{/if}}
-		</div>
-	</div>
-		
-</template>
-
 <template name="register">
-    <form class="register">
-        <input class="input-field" type="email" id="email" placeholder="Email" name="email" required>
-        <input class="input-field" type="password" placeholder="Password" name="password" required>
-        <input type="submit" value="Signup">
-    </form>
-    <a href="/login">or Login</a>
+	<div class="onboarding-container">
+		<div class="desklife-logo">
+			<div class="desklife-title">Desk Life</div>
+			<div class="desklife-slogan">Work smarter. Feel better.</div>
+		</div>
+	    <form class="register">
+	        <input class="input-field" type="email" id="email" placeholder="Email" name="email" required>
+	        <input class="input-field" type="password" placeholder="Password" name="password" required>
+	        <input type="submit" value="Signup">
+	    </form>
+	    <a href="/login">or Login</a>
+	</div>
 </template>
 
 <template name="login">
-    <form class="login">
-        <input class="input-field" type="email" name="email" placeholder="Email" required>
-        <input class="input-field" type="password" name="password" placeholder="Password" required>
-        <input type="submit" value="Login">
-    </form>
-    <a href="/register">or Signup</a>
+	<div class="onboarding-container">
+		<div class="desklife-logo">
+			<div class="desklife-title">Desk Life</div>
+			<div class="desklife-slogan">Work smarter. Feel better.</div>
+		</div>
+	    <form class="login">
+	        <input class="input-field" type="email" name="email" placeholder="Email" required>
+	        <input class="input-field" type="password" name="password" placeholder="Password" required>
+	        <input type="submit" value="Login">
+	    </form>
+	    <a href="/register">or Signup</a>
+    </div>
 </template>

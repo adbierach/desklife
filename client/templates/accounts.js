@@ -1,24 +1,4 @@
 
-Template.loginRegister.events({
-    'click .login-btn': function() {
-    	Session.set('registering', false);
-    	Session.set('loggingIn', true);
-    },
-    'click .register-btn': function() {
-    	Session.set('registering', true);
-    	Session.set('loggingIn', false);	
-    }
-});
-
-Template.loginRegister.helpers({
-	registering: function() {
-		return Session.get('registering');
-	},
-	loggingIn: function() {
-		return Session.get('loggingIn');
-	}
-});
-
 Template.register.events({
     'submit form': function(event) {
         event.preventDefault();
@@ -36,6 +16,7 @@ Template.register.onRendered(function(){
                 password: password
             }, function(error) {
                 if (error) {
+                    console.log(error);
                     if(error.reason == 'Email already exists.'){
                         validator.showErrors({
                             email: 'That email already belongs to a registered user.'   
@@ -55,9 +36,6 @@ Template.login.events({
     }
 });
 
-Template.login.onCreated(function(){
-    console.log("The 'login' template was just created.");
-});
 
 Template.login.onRendered(function(){
     console.log("The 'login' template was just rendered.");
@@ -68,6 +46,7 @@ Template.login.onRendered(function(){
             
             Meteor.loginWithPassword(email, password, function(error) {
                 if (error) {
+                    console.log(error);
                     if (error.reason == 'User not found') {
                         validator.showErrors({
                             email: error.reason
@@ -89,9 +68,6 @@ Template.login.onRendered(function(){
     });
 });
 
-Template.login.onDestroyed(function(){
-    console.log("The 'login' template was just destroyed.");
-});
 
 
 $.validator.setDefaults({
