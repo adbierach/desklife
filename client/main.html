@@ -107,12 +107,22 @@
 	</div>
 </template>
 
+<template name="nextExerciseModal">
+	<div class="next-exercise-modal">
+		<div>Next Exercise</div>
+		<div class="next-exercise-timer">{{nextExerciseTimer}}</div>
+	</div>
+</template>
+
 <template name="routineSequence">
 	{{#if viewingExercise}}
 		{{> exerciseDetail}}
 	{{/if}}
 	{{#if exitingSequence}}
 		{{> exitSequenceModal}}
+	{{/if}}
+	{{#if nextExercise}}
+		{{> nextExerciseModal}}
 	{{/if}}
 	<header>	
 		<img class="close align-vertical" src="/images/close.png">

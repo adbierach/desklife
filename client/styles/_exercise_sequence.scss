@@ -94,3 +94,20 @@
 	border: 2px solid $white;
 	padding: 5px 15px;
 }
+
+.next-exercise-modal {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(83,175,122,0.9);
+    z-index: 120;
+    color: white;
+    position: absolute;
+    text-align: center;
+    padding-top: 27%;
+}
+
+
+.next-exercise-timer {
+	font-size: 48px;
+	margin-top: 50px;
+}

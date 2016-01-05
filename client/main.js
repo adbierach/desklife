@@ -132,6 +132,12 @@
     }
   });
 
+  Template.nextExerciseModal.helpers({
+    nextExerciseTimer: function () {
+      return Session.get('nextExerciseTimer');
+    }
+  });
+
   Template.routineSequence.helpers({
     timer: function () {
       var time = Session.get('timer');
@@ -149,6 +155,10 @@
     activeExercise: function () {
       var activeExerciseIndex = Session.get('activeExerciseIndex');
       return this.exercises[activeExerciseIndex];
+    },
+
+    nextExercise : function () {
+      return Session.get('nextExercise');
     },
 
     timerRunning: function () {
@@ -239,7 +249,7 @@
   sequenceTimer = function() {
     if (timer > 0) {
       timer--;
-      Session.set("timer", timer);
+      Session.set('timer', timer);
     } else {
       nextExercise();
     }
@@ -254,9 +264,40 @@
 
 
     if (upcomingExerciseIndex < exerciseList.length) {
+
+      //show nextExerciseModal and update nextexcercisetimer
+      Session.set('nextExercise', true);
+      var nextExerciseTimer = 5;
+      Session.set('nextExerciseTimer', nextExerciseTimer);
+
+      //pause timer & swap out content with next exercise content
+      toggleTimer();
       timer = upcomingExercise.duration;
       Session.set('timer', timer);
       Session.set('activeExerciseIndex', upcomingExerciseIndex);
+
+
+      var nextExerciseInterval = Meteor.setInterval(function () {
+        
+        var didNextExerciseCountdownStop;      
+
+        if ( nextExerciseTimer > 0) {
+          nextExerciseTimer--;
+          Session.set('nextExerciseTimer', nextExerciseTimer);
+        }
+
+        else {
+          //update view with next exercise info; only run once
+          if (!didNextExerciseCountdownStop) {
+            Meteor.clearInterval(nextExerciseInterval);
+            toggleTimer();
+            Session.set('nextExercise', false);
+          }
+          didNextExerciseCountdownStop = true;
+        }
+
+      }, 1000);
+
     }
     else {
       completeRoutine(activeRoutine);
