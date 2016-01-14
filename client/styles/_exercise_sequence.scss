@@ -98,16 +98,22 @@
 .next-exercise-modal {
     width: 100%;
     height: 100%;
-    background-color: rgba(83,175,122,0.9);
+    background-color: $gioGreen;
     z-index: 120;
     color: white;
     position: absolute;
     text-align: center;
-    padding-top: 27%;
 }
 
+.next-exercise-wrapper {
+	width: 100%;
+}
+
+.next-exercise-text {
+	font-size: 50px;
+}
 
 .next-exercise-timer {
-	font-size: 48px;
-	margin-top: 50px;
+	font-size: 70px;
+	margin-top: 20px;
 }
