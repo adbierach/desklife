@@ -24,6 +24,16 @@
         userRoutines.push(routine);
       });
 
+      //ensures routines are sorted
+      userRoutines.sort(function (a,b) {
+        if (a.id < b.id)
+          return -1;
+        else if (a.id > b.id)
+          return 1;
+        else 
+          return 0;
+      });
+
       return userRoutines;
     },
 
@@ -262,12 +272,16 @@
     exerciseList = activeRoutine.exercises,
     upcomingExercise = exerciseList[upcomingExerciseIndex];
 
+    if (Meteor.isCordova) {
+      window.navigator.vibrate(5000);
+    }
+
 
     if (upcomingExerciseIndex < exerciseList.length) {
 
       //show nextExerciseModal and update nextexcercisetimer
       Session.set('nextExercise', true);
-      var nextExerciseTimer = 5;
+      var nextExerciseTimer = 3;
       Session.set('nextExerciseTimer', nextExerciseTimer);
 
       //pause timer & swap out content with next exercise content
@@ -281,7 +295,7 @@
         
         var didNextExerciseCountdownStop;      
 
-        if ( nextExerciseTimer > 0) {
+        if ( nextExerciseTimer > 1) {
           nextExerciseTimer--;
           Session.set('nextExerciseTimer', nextExerciseTimer);
         }
