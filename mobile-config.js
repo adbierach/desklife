@@ -29,9 +29,10 @@ App.setPreference('HideKeyboardFormAccessoryBar', true);
 App.setPreference('Orientation', 'portrait');
 App.setPreference('DisallowOverscroll', true);
 App.setPreference('StatusBarOverlaysWebView', true);
+App.setPreference('StatusBarStyle', 'lightcontent');
 //App.setPreference('StatusBarBackgroundColor', '#53af7a');
 
-
+App.accessRule("http://desklife.meteorapp.com");
 // Pass preferences for a particular PhoneGap/Cordova plugin
 // App.configurePlugin('com.phonegap.plugins.facebookconnect', {
 //   APP_ID: '1234567890',
