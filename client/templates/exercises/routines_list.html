@@ -1,0 +1,27 @@
+<template name="routinesList">
+{{#if settingReminders}}
+	{{> reminders}}
+{{/if}}
+{{> dashboard}}
+<div class="routines-container">
+	<header class="routines-header">
+		<div class="header-title align-center">Routines</div>
+		<div class="toggle-dashboard">
+			<div class="hamburger align-vertical">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
+	</header>
+	<ul class="routines-list-container">
+	{{#each routines}}
+		<li class="routine-list-item">
+			<a href="routine/{{_id}}"><div class="routine-num align-center {{#if completed}}completed{{/if}}">{{id}}<span class="gradient-scrim"></span></div></a>
+		</li>
+	{{/each}}
+	</ul>
+	<div class="connecting-line align-horizontal"></div>
+	<div class="message align-vertical">{{routinesMessage}}</div>
+</div>
+</template>

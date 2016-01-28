@@ -1,1 +1,18 @@
-
+<template name="exerciseDetail">
+	<header class="exercise-detail-header">
+		<div class="back-button-container">
+			<div class="back-button align-center"></div>
+		</div>
+	</header>
+	<div class="exercise-detail">
+		{{#with exercise}}
+		<div class="exercise-title">{{name}}</div>
+		{{#if imagePath}}
+		<img class="exercise-image" src="{{imagePath}}">
+		{{/if}}
+		<div class="exercise-text-group">
+			<div class="exercise-text">{{description}}</div>
+		</div>
+		{{/with}}
+	</div>
+</template>
