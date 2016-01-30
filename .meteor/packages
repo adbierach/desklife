@@ -25,3 +25,4 @@ fastclick
 iron:router
 themeteorchef:jquery-validation
 msavin:mongol
+momentjs:moment
