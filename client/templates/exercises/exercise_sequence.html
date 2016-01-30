@@ -8,6 +8,19 @@
 			<div class="return-to-routine exit-sequence-btn">No</div>
 		</div>
 	</div>
+
+</template>
+<template name="pauseSequenceModal">
+	<div class="pause-sequence-modal">
+		<div class="toggle-timer align-center">
+			{{#if timerRunning}}
+			<img class="pause align-center" src="/images/pause.png">
+			{{else}}
+			<div class="resume align-center"></div>
+			{{/if}}
+		</div>
+		<div class="close-pause-overlay"></div>
+	</div>
 </template>
 
 <template name="nextExerciseModal">
@@ -19,7 +32,27 @@
 	</div>
 </template>
 
+<template name="exerciseDetail">
+	<div class="exercise-detail">
+		{{#with activeExercise}}
+		<div class="exercise-title">{{name}}</div>
+		{{#if imagePath}}
+		<img class="exercise-image" src="{{imagePath}}">
+		{{/if}}
+		<div class="exercise-text-group">
+			<div class="exercise-text">{{description}}</div>
+		</div>
+		{{/with}}
+		<div class="close-wrapper">
+			<img class="close-exercise-detail align-center" src="/images/close.png">
+		</div>
+	</div>
+</template>
+
 <template name="routineSequence">
+	{{#if pauseOverlay}}
+		{{> pauseSequenceModal}}
+	{{/if}}
 	{{#if viewingExercise}}
 		{{> exerciseDetail}}
 	{{/if}}
@@ -29,31 +62,36 @@
 	{{#if nextExercise}}
 		{{> nextExerciseModal}}
 	{{/if}}
-	<header>	
-		<img class="close align-vertical" src="/images/close.png">
-		<div class="active-exercise-progress align-center">{{exercisesCompleted}}/{{totalExercises}}</div>
-	</header>
+
 	{{#with activeExercise}}
-	<div class="active-exercise-wrapper align-center">
-		<div class="view-exercise active-exercise-title">{{name}}</div>
+	<div class="active-exercise-wrapper">
+		<div class="show-pause-overlay"></div>
 		{{#if imagePath}}
-		<img class="view-exercise active-exercise-image" src="{{imagePath}}">
-		{{#if shortDescription}}
-		<div class="active-exercise-short">{{shortDescription}}</div>
-		{{/if}}
+		<img class="active-exercise-image" src="{{imagePath}}">
 		{{else}}
-		<div class="view-exercise active-exercise-description">{{description}}</div>
+		<div class="active-exercise-description align-center">{{description}}</div>
 		{{/if}}
 	</div>
 	{{/with}}
 	<div class="timer-group">
-		<div class="timer align-vertical">00:{{timer}}</div>
-		<div class="toggle-timer align-vertical">
-			{{#if timerRunning}}
-			<img class="pause align-center" src="/images/pause.png">
-			{{else}}
-			<div class="resume align-center"></div>
-			{{/if}}
+		<div class="show-pause-overlay"></div>
+		<!-- <img class="close align-vertical" src="/images/close.png"> -->
+		{{#with activeExercise}}
+		<div class="active-exercise-title align-vertical">{{name}}</div>
+		{{#if shortDescription}}
+		<div class="active-exercise-short">{{shortDescription}}</div>
+		{{/if}}
+		{{/with}}
+		<div class="timer align-center">0:{{timer}}</div>
+
+		<div class="view-exercise-info">
+			<div class="info-icon">i</div>
 		</div>
+	</div>
+	<div class="sequence-progress-group">
+		<div class="active-exercise-progress">{{exercisesCompleted}}/{{totalExercises}}</div>
+		<div class="total-time-left">{{totalTimeLeft}}</div>
+		<div class="timer-control add-time">More +</div>
+		<div class="timer-control subtract-time">Less -</div>
 	</div>
 </template>

@@ -1,3 +1,7 @@
+var totalTimeLeft = 0;
+var timer = 0;
+
+
 Template.exitSequenceModal.events({
   'click .return-to-routine': function() {
     Session.set('exitingSequence', false);
@@ -10,11 +14,49 @@ Template.exitSequenceModal.events({
   }
 });
 
+Template.pauseSequenceModal.helpers({
+  timerRunning: function () {
+    return Session.get('timerRunning');
+  }
+});
+
+Template.pauseSequenceModal.events({
+  'click .pause, click .resume': function() {
+    toggleTimer();
+  },
+  'click .close-pause-overlay': function () {
+    Session.set('pauseOverlay', false);
+  }
+});
+
 Template.nextExerciseModal.helpers({
   nextExerciseTimer: function () {
     return Session.get('nextExerciseTimer');
   }
 });
+
+Template.exerciseDetail.onRendered( function () {
+  setTimeout(function() {
+      $('.exercise-detail').addClass('show');
+  }, 50);
+});
+
+Template.exerciseDetail.helpers({
+  activeExercise: function () {
+    var activeExerciseIndex = Session.get('activeExerciseIndex');
+    return this.exercises[activeExerciseIndex];
+  }
+});
+
+Template.exerciseDetail.events({
+  'click .close-wrapper': function() {
+    $('.exercise-detail').removeClass('show');
+    setTimeout(function() {
+    Session.set('viewingExercise', false);
+    }, 500);
+  }
+});
+
 
 Template.routineSequence.helpers({
   timer: function () {
@@ -26,6 +68,9 @@ Template.routineSequence.helpers({
 
     return time;
 
+  },
+  pauseOverlay : function () {
+    return Session.get('pauseOverlay');
   },
   viewingExercise : function () {
     return Session.get('viewingExercise');
@@ -39,18 +84,24 @@ Template.routineSequence.helpers({
     return Session.get('nextExercise');
   },
 
-  timerRunning: function () {
-    return Session.get('timerRunning');
-  },
-
   exitingSequence: function () {
     return Session.get('exitingSequence');
   },
+  totalTimeLeft: function () {
+    var totalTimeLeft = Session.get('totalTimeLeft');
+    var minutes = Math.floor(totalTimeLeft / 60);
+    var seconds = totalTimeLeft % 60;
+    if (seconds.toString().length === 1) {
+      seconds = '0' + seconds;
+    }
 
+    var displayTime = minutes + ':' + seconds; 
+
+    return displayTime;
+  },
   totalExercises: function () {
     return this.exercises.length;
   },
-
   exercisesCompleted: function () {
     var activeExerciseIndex = Session.get('activeExerciseIndex');
     var exercisesCompleted = activeExerciseIndex + 1;
@@ -58,21 +109,27 @@ Template.routineSequence.helpers({
   }
 });
 
+
 Template.routineSequence.events({
-  'click .pause, click .resume': function() {
-    toggleTimer();
+  'click .add-time': function () {
+   timer += 10;
+   totalTimeLeft += 10;
+  },
+  'click .subtract-time': function () {
+    timer -= 10;
+    if (timer > 0) {
+      totalTimeLeft -= 10;
+    }
   },
 
-  'click .view-exercise': function() {
+  'click .view-exercise-info': function() {
     var selectedExercise = this;
-    var timerRunning = Session.get('timerRunning');
-    
-    if (timerRunning) { 
-      toggleTimer();
-    }
     Session.set('selectedExercise', selectedExercise);
     Session.set('viewingExercise', true);
 
+  },
+  'click .show-pause-overlay' : function () {
+    Session.set('pauseOverlay', true);
   },
 
   'click .close': function() {
@@ -107,15 +164,23 @@ Template.routineSequence.onDestroyed(function(){
     }
 });
 
+
 startSequence = function() {
   var initialExerciseIndex = 0,
   activeRoutine = Session.get('activeRoutine'),
   initialExercise = activeRoutine.exercises[initialExerciseIndex];
 
+  activeRoutine.exercises.forEach(function(exercise) {
+    totalTimeLeft += exercise.duration;
+    console.log(totalTimeLeft);
+  });
+
   timer = initialExercise.duration; 
+
   interval = Meteor.setInterval(sequenceTimer, 1000);
   
   Session.set('timer', timer);
+  Session.set('totalTimeLeft',totalTimeLeft);
   Session.set('activeExerciseIndex', initialExerciseIndex);
   Session.set('timerRunning', true);
 }
@@ -124,6 +189,8 @@ sequenceTimer = function() {
   if (timer > 0) {
     timer--;
     Session.set('timer', timer);
+    totalTimeLeft--;
+    Session.set('totalTimeLeft', totalTimeLeft);
   } else {
     nextExercise();
   }
