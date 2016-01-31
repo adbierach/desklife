@@ -26,6 +26,12 @@ Template.pauseSequenceModal.events({
   },
   'click .close-pause-overlay': function () {
     Session.set('pauseOverlay', false);
+  },
+  'click .exit-sequence': function() {
+    Session.set('pauseOverlay', false);
+    Session.set('exerciseSequence', false);
+    Session.set('routinesState',true);
+    console.log('test');
   }
 });
 
@@ -153,6 +159,9 @@ Template.routineSequence.onCreated(function(){
 });
 
 Template.routineSequence.onDestroyed(function(){
+    //reset 
+    totalTimeLeft = 0;
+
     Meteor.clearInterval(interval);
 
     //allow screen to sleep
