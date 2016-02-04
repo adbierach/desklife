@@ -4,12 +4,12 @@ Template.routineDetail.helpers({
   }
 });
 
-Template.routineDetail.events({
-  'click .exercise': function() {
-    var selectedExercise = this;
+// Template.routineDetail.events({
+//   'click .exercise': function() {
+//     var selectedExercise = this;
 
-    Session.set('selectedExercise', selectedExercise);
-    Session.set('viewingExercise', true);
+//     Session.set('selectedExercise', selectedExercise);
+//     Session.set('viewingExercise', true);
 
-  },
-});
+//   },
+// });

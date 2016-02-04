@@ -13,7 +13,11 @@ Template.exitSequenceModal.events({
     Session.set('routinesState',true);
   }
 });
-
+Template.pauseSequenceModal.onRendered( function () {
+  setTimeout(function() {
+      $('.pause-sequence-modal').addClass('show');
+  }, 50);
+});
 Template.pauseSequenceModal.helpers({
   timerRunning: function () {
     return Session.get('timerRunning');
@@ -25,7 +29,10 @@ Template.pauseSequenceModal.events({
     toggleTimer();
   },
   'click .close-pause-overlay': function () {
+    $('.pause-sequence-modal').removeClass('show');
+    setTimeout(function() {
     Session.set('pauseOverlay', false);
+    }, 500);
   },
   'click .exit-sequence': function() {
     Session.set('pauseOverlay', false);

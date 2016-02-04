@@ -62,15 +62,7 @@ var reminder = {
 		var reminderTimesArray = [
 			{
 				hour: 10,
-				minute: 30
-			},
-			{
-				hour: 11,
-				minute: 28
-			},
-			{
-				hour: 11,
-				minute: 29
+				minute: 0
 			},
 			{
 				hour: 11,
@@ -82,11 +74,15 @@ var reminder = {
 			},
 			{
 				hour: 14,
+				minute: 0
+			},
+			{
+				hour: 15,
 				minute: 30
 			},
 			{
-				hour: 16,
-				minute: 30
+				hour: 17,
+				minute: 0
 			}
 		];
 
