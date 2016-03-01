@@ -38,7 +38,6 @@ Template.pauseSequenceModal.events({
     Session.set('pauseOverlay', false);
     Session.set('exerciseSequence', false);
     Session.set('routinesState',true);
-    console.log('test');
   }
 });
 
@@ -188,7 +187,6 @@ startSequence = function() {
 
   activeRoutine.exercises.forEach(function(exercise) {
     totalTimeLeft += exercise.duration;
-    console.log(totalTimeLeft);
   });
 
   timer = initialExercise.duration; 
@@ -266,7 +264,10 @@ nextExercise = function() {
 }
 
 completeRoutine = function(routine) {
-    Meteor.call('logCompletedRoutine', routine._id);
+    var completedRoutines = JSON.parse(localStorage.getItem('completedRoutines'));
+    completedRoutines.push(routine._id);
+    localStorage.setItem('completedRoutines', JSON.stringify(completedRoutines));
+
     Router.go('/');
 }
 

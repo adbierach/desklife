@@ -4,7 +4,7 @@ Template.routinesList.helpers({
     },
     routines: function() {
       var routines = Routines.find({}).fetch();
-      var routinesCompletedToday = Meteor.user().routinesCompletedToday;
+      var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));
       var userRoutines = [];
 
       routines.forEach(function(routine) {
@@ -44,7 +44,7 @@ Template.routinesList.helpers({
       'This last one is fun.',
       'It is good to have an end to journey toward; but it is the journey that matters, in the end. Congratulations!'
       ];
-      var numRoutinesCompletedToday = Meteor.user().routinesCompletedToday.length;
+      var numRoutinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines')).length;
 
 
       switch (numRoutinesCompletedToday) {
@@ -76,7 +76,7 @@ Template.routinesList.helpers({
 
     pauseID : function() {
       var routines = Routines.find({}).fetch();
-      var routinesCompletedToday = Meteor.user().routinesCompletedToday;
+      var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));//Meteor.user().routinesCompletedToday;
       var pauseId = routines[0]._id;
 
       for (var i=0; i < routines.length; i++) {

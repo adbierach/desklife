@@ -1,7 +1,7 @@
   
 
   Template.main.onCreated(function() {
-    this.subscribe('userData');
+    //this.subscribe('userData');
     this.subscribe('routines');
   });
 
