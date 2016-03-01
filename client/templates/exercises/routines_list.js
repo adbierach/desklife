@@ -72,6 +72,23 @@ Template.routinesList.helpers({
       } 
 
       return routinesMessage;
+    },
+
+    pauseID : function() {
+      var routines = Routines.find({}).fetch();
+      var routinesCompletedToday = Meteor.user().routinesCompletedToday;
+      var pauseId = routines[0]._id;
+
+      for (var i=0; i < routines.length; i++) {
+        if (routinesCompletedToday.indexOf(routines[i]._id) < 0) {
+          pauseId = routines[i]._id;
+ 
+          return pauseId;
+        }
+      }
+
+      return pauseId;
+
     }
 });
 

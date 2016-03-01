@@ -1,8 +1,14 @@
+
+/* Rectangle 744: */
+//texture behind text based exercise instructions
+//background: #FFFFFF;
+//background-image: radial-gradient(50% 246%, rgba(255,255,255,0.14) 50%, rgba(0,0,0,0.14) 100%);
+
 .timer-group {
 	bottom: 3%;
 	width: 100%;
 	height: 41%;
-	background-color: $darkBlue;
+	//background-color: $darkBlue;
 	position: absolute;
 }
 
@@ -11,7 +17,7 @@
 	line-height: 128px;
 	text-align: center;
 	color: $white;
-	border: 10px solid $gioGreen;
+	border: 10px solid #4E6DA5;
 	border-radius: 50%;
 	width: 150px;
 	height: 150px;
@@ -37,7 +43,7 @@
 	bottom: 0;
 	height: 30px;
 	line-height: 30px;
-	background-color: #000;
+	background-color: #4E6DA5;
 	font-size: 16px;
 	z-index: 2;
 }
@@ -103,7 +109,8 @@
 	right: 15px;
 }
 .active-exercise-wrapper {
-	background-color: $gioLightBlue;
+	background: #FFFFFF;
+	background-image: radial-gradient(50% 246%, rgba(255,255,255,0.14) 50%, rgba(0,0,0,0.14) 100%);
 	height: 56%;
 	position: relative;
 }
@@ -116,12 +123,12 @@
 }
 
 .active-exercise-description {
-	font-size: 20px;
+	font-size: 44px;
 	width: 80%;
 	text-align: center;
-	margin: 5% auto 0;
+	margin: 0 auto;
 	min-height: 30%; 
-	color: #424242;
+	color: #000000;
 }
 
 .active-exercise-image {
@@ -225,8 +232,8 @@
 
 .next-exercise-modal {
     width: 100%;
-    height: 100%;
-    background-color: $gioGreen;
+    height: calc(100% - 30px);
+    background-image: linear-gradient(-180deg, #BCD3F5 0%, #85AAEE 100%);
     z-index: 120;
     color: white;
     position: absolute;
