@@ -1,0 +1,20 @@
+<template name="routineDetail">
+	{{#if viewingExercise}}
+		{{> exerciseDetail}}
+	{{/if}}
+	<header class="routine-detail-header">
+		<a href="/"><div class="back-button-container">
+			<div class="back-button align-center"></div>
+		</div></a>
+		<div class="selected-routine-num align-center">{{id}}</div>
+	</header>
+	<div class="exercises-list-container align-center">
+		<div class="exercise-list-title">Exercises</div>
+		<ul class="exercises-list">
+		{{#each exercises}}
+			 <li class="exercise">{{name}}</li>
+		{{/each}}
+		</ul>
+	</div>
+	<a href="/sequence/{{_id}}"><div class="start-routine align-horizontal">Begin</div></a>	
+</template>

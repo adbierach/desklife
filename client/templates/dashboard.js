@@ -1,6 +1,12 @@
 Template.dashboard.events({
-    'click .logout': function(event){
-        event.preventDefault();
-        Meteor.logout();
+    'click .clear-routines': function(event) {
+    	event.preventDefault();
+    	localStorage.setItem('completedRoutines', '[]');
+    },
+
+    'click .reminders': function(event) {
+    	event.preventDefault();
+
+    	Session.set('settingReminders', true);
     }
 });

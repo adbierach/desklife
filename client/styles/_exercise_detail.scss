@@ -9,24 +9,31 @@
 	top: 0;
 	left: 0;
 	width: 100%;
-	max-width: 500px;
-	min-height: 100%;
-	background-color: $bgColor2;
+	height: 97%;
+	overflow-y: scroll;
+	background-color: $darkBlue;
 	z-index: 1;
+	color: $white;
+	transform: translateY(100%);
+	transition: all 0.3s ease;
+
+	&.show {
+		transform: translateY(0);
+		//background-color: blue;
+	}
 }
 
 .exercise-title {
 	width: 80%;
-	margin: 25% auto 5%;
+	margin: 5% auto 5%;
 }
 
 .exercise-image {
-	width: 80%;
-	margin: 0 10%;
+	width: 100%;
 }
 .exercise-text-group {
 	width: 80%;
-	margin: 0 auto 10%;
+	margin: 5% auto;
 }
 
 .exercise-text-title {
@@ -37,6 +44,7 @@
 
 .exercise-text {
 	font-size: 20px;
+	font-weight: 300;
 }
 
 

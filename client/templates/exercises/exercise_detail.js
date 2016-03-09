@@ -1,3 +1,0 @@
-// Template.exerciseDetail.helpers ({
-
-// });
