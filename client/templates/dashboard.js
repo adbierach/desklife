@@ -1,7 +1,7 @@
 Template.dashboard.events({
     'click .clear-routines': function(event) {
     	event.preventDefault();
-    	Meteor.call('clearCompletedRoutines');
+    	localStorage.setItem('completedRoutines', '[]');
     },
 
     'click .reminders': function(event) {

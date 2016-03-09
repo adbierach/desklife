@@ -14,16 +14,14 @@
 	<div class="pause-sequence-modal">
 		<a href="/"><div class="exit-sequence exit-sequence-arrow-container">
 			<div class="exit-sequence-arrow"></div>
-			<div class="exit-sequence-text">Quit</div>
+			<div class="exit-sequence-text">exit</div>
 		</div></a>
-		<div class="toggle-timer align-center">
-			{{#if timerRunning}}
-			<img class="pause align-center" src="/images/pause.png">
-			{{else}}
-			<div class="resume align-center"></div>
-			{{/if}}
+		<div class="function-group align-vertical">
+			<div class="prev-arrow align-vertical"></div>
+			<div class="resume play-icon align-center"></div>
+			<div class="next-arrow align-vertical"></div>
 		</div>
-		<div class="close-pause-overlay"></div>
+		<div class="resume close-pause-overlay"></div>
 	</div>
 </template>
 
@@ -80,12 +78,9 @@
 	<div class="timer-group">
 		<div class="show-pause-overlay"></div>
 		<!-- <img class="close align-vertical" src="/images/close.png"> -->
-		{{#with activeExercise}}
+<!-- 		{{#with activeExercise}}
 		<div class="active-exercise-title align-vertical">{{name}}</div>
-		{{#if shortDescription}}
-		<div class="active-exercise-short">{{shortDescription}}</div>
-		{{/if}}
-		{{/with}}
+		{{/with}} -->
 		<div class="timer align-center">0:{{timer}}</div>
 
 		<div class="view-exercise-info">
@@ -93,9 +88,10 @@
 		</div>
 	</div>
 	<div class="sequence-progress-group">
-		<div class="active-exercise-progress">{{exercisesCompleted}}/{{totalExercises}}</div>
+		{{#with activeExercise}}
+		<div class="active-exercise-title align-vertical">{{name}}</div>
+		{{/with}}
 		<div class="total-time-left">{{totalTimeLeft}}</div>
-		<div class="timer-control add-time">More +</div>
-		<div class="timer-control subtract-time">Less -</div>
+		<div class="active-exercise-progress">{{exercisesCompleted}}/{{totalExercises}}</div>
 	</div>
 </template>

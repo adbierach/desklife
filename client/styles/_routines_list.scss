@@ -6,7 +6,7 @@
 	line-height: 80px;
 	font-size: 30px;
 	//background-color: $greenbtn1;
-	animation-duration: 10s;
+	animation-duration: 5s;
   	animation-name: colorfade;
   	animation-iteration-count: infinite;
   	animation-direction: alternate;
@@ -19,7 +19,7 @@
   }
 
   to {
-	background-color: $greenbtn1;
+	background-color: #334A74;
   }
 }
 

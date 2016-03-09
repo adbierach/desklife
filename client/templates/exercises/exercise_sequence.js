@@ -9,8 +9,6 @@ Template.exitSequenceModal.events({
 
   'click .confirm-exit': function() {
     Session.set('exitingSequence', false);
-    Session.set('exerciseSequence', false);
-    Session.set('routinesState',true);
   }
 });
 Template.pauseSequenceModal.onRendered( function () {
@@ -19,16 +17,20 @@ Template.pauseSequenceModal.onRendered( function () {
   }, 50);
 });
 Template.pauseSequenceModal.helpers({
-  timerRunning: function () {
-    return Session.get('timerRunning');
-  }
+  // timerRunning: function () {
+  //   return Session.get('timerRunning');
+  // }
 });
 
 Template.pauseSequenceModal.events({
-  'click .pause, click .resume': function() {
+  'click .resume': function () {
+    //only run once; prevents firing during
+    //fade out transition
+    if(!$('.pause-sequence-modal').hasClass('show')) {
+      return false;
+    }
+    //resume timer
     toggleTimer();
-  },
-  'click .close-pause-overlay': function () {
     $('.pause-sequence-modal').removeClass('show');
     setTimeout(function() {
     Session.set('pauseOverlay', false);
@@ -36,8 +38,12 @@ Template.pauseSequenceModal.events({
   },
   'click .exit-sequence': function() {
     Session.set('pauseOverlay', false);
-    Session.set('exerciseSequence', false);
-    Session.set('routinesState',true);
+  },
+  'click .next-arrow': function() {
+    skipExercise();
+  },
+  'click .prev-arrow': function() {
+    previousExercise();
   }
 });
 
@@ -62,6 +68,8 @@ Template.exerciseDetail.helpers({
 
 Template.exerciseDetail.events({
   'click .close-wrapper': function() {
+    //resume timer
+    toggleTimer();
     $('.exercise-detail').removeClass('show');
     setTimeout(function() {
     Session.set('viewingExercise', false);
@@ -123,24 +131,17 @@ Template.routineSequence.helpers({
 
 
 Template.routineSequence.events({
-  'click .add-time': function () {
-   timer += 10;
-   totalTimeLeft += 10;
-  },
-  'click .subtract-time': function () {
-    timer -= 10;
-    if (timer > 0) {
-      totalTimeLeft -= 10;
-    }
-  },
-
   'click .view-exercise-info': function() {
     var selectedExercise = this;
+    //pause timer
+    toggleTimer();
     Session.set('selectedExercise', selectedExercise);
     Session.set('viewingExercise', true);
 
   },
   'click .show-pause-overlay' : function () {
+    //pause timer
+    toggleTimer();
     Session.set('pauseOverlay', true);
   },
 
@@ -262,6 +263,61 @@ nextExercise = function() {
     completeRoutine(activeRoutine);
   }
 }
+
+skipExercise = function() {
+  var previousExerciseIndex = Session.get('activeExerciseIndex'),
+  upcomingExerciseIndex = previousExerciseIndex + 1;
+  activeRoutine = Session.get('activeRoutine'),
+  exerciseList = activeRoutine.exercises,
+  upcomingExercise = exerciseList[upcomingExerciseIndex];
+
+  if (upcomingExerciseIndex < exerciseList.length) {
+
+    //pause timer & swap out content with next exercise content
+    //toggleTimer();
+    timer = upcomingExercise.duration;
+    //update total time left by subtracting remaining time
+    totalTimeLeft = Session.get('totalTimeLeft') - Session.get('timer');
+    Session.set('timer', timer);
+    Session.set('totalTimeLeft', totalTimeLeft);
+    Session.set('activeExerciseIndex', upcomingExerciseIndex);
+
+  }
+  else {
+    Session.set('pauseOverlay', false);
+    completeRoutine(activeRoutine);
+  }
+
+}
+
+previousExercise = function() {
+  var previousExerciseIndex = Session.get('activeExerciseIndex'),
+  upcomingExerciseIndex = previousExerciseIndex - 1;
+  activeRoutine = Session.get('activeRoutine'),
+  exerciseList = activeRoutine.exercises,
+  upcomingExercise = exerciseList[upcomingExerciseIndex];
+  if (upcomingExerciseIndex >= 0) {
+    //recalculate total time left
+    totalTimeLeft = 0;
+    for (var i = upcomingExerciseIndex; i < exerciseList.length; i++ ) {
+      totalTimeLeft += exerciseList[i].duration;
+    }
+    //update timer
+    timer = upcomingExercise.duration;
+
+    Session.set('timer', timer);
+    Session.set('totalTimeLeft', totalTimeLeft);
+
+    Session.set('activeExerciseIndex', upcomingExerciseIndex);
+
+  }
+  else {
+    Session.set('pauseOverlay', false);
+    Router.go('/');
+  }
+
+}
+
 
 completeRoutine = function(routine) {
     var completedRoutines = JSON.parse(localStorage.getItem('completedRoutines'));
