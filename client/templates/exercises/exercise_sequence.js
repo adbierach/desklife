@@ -77,7 +77,6 @@ Template.exerciseDetail.events({
   }
 });
 
-
 Template.routineSequence.helpers({
   timer: function () {
     var time = Session.get('timer');
@@ -139,7 +138,7 @@ Template.routineSequence.events({
     Session.set('viewingExercise', true);
 
   },
-  'click .show-pause-overlay' : function () {
+  'click .show-pause-overlay, click .timer, click .active-exercise-description' : function () {
     //pause timer
     toggleTimer();
     Session.set('pauseOverlay', true);
@@ -163,6 +162,12 @@ Template.routineSequence.onCreated(function(){
     if (Meteor.isCordova) {
       window.plugins.insomnia.keepAwake();
     }
+});
+
+Template.routineSequence.onRendered( function () {
+  setTimeout(function() {
+      $('.routine-sequence-wrapper').addClass('fade-in');
+  }, 50);
 });
 
 Template.routineSequence.onDestroyed(function(){

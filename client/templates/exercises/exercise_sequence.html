@@ -64,7 +64,7 @@
 	{{#if nextExercise}}
 		{{> nextExerciseModal}}
 	{{/if}}
-
+	<div class="routine-sequence-wrapper">
 	{{#with activeExercise}}
 	<div class="active-exercise-wrapper">
 		<div class="show-pause-overlay"></div>
@@ -93,5 +93,6 @@
 		{{/with}}
 		<div class="total-time-left">{{totalTimeLeft}}</div>
 		<div class="active-exercise-progress">{{exercisesCompleted}}/{{totalExercises}}</div>
+	</div>
 	</div>
 </template>

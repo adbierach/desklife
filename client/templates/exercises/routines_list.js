@@ -89,6 +89,16 @@ Template.routinesList.helpers({
 
       return pauseId;
 
+    },
+    completedRoutines: function() {
+        var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));
+        return routinesCompletedToday.length;
+    },
+    routinesCount: function() {
+        return Routines.find({}).fetch().length;
+    },
+    viewingInfo: function() {
+      return Session.get('viewingInfo');
     }
 });
 
@@ -104,5 +114,42 @@ Template.routinesList.events({
      // ga('send', 'event', 'Dashboard', 'opened');
 
 
+    },
+    'click .start-btn': function() {
+      var routines = Routines.find({}).fetch();
+      var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));//Meteor.user().routinesCompletedToday;
+      var pauseId = routines[0]._id;
+
+      for (var i=0; i < routines.length; i++) {
+        if (routinesCompletedToday.indexOf(routines[i]._id) < 0) {
+          pauseId = routines[i]._id;
+        }
+      }
+      $('.dashboard-container').hide();
+      $('.routines-container').addClass('fade-out');
+      setTimeout(function() {
+        Router.go('/sequence/' + pauseId);
+      }, 1000)
+      
+    },
+    'click .desklife-info': function() {
+      Session.set('viewingInfo', true);
     }
+});
+
+Template.desklifeInfo.onRendered( function () {
+  setTimeout(function() {
+      $('.info-container').addClass('show');
+  }, 50);
+});
+
+
+Template.desklifeInfo.events({
+  'click .close-wrapper': function() {
+    //resume timer
+    $('.info-container').removeClass('show');
+    setTimeout(function() {
+    Session.set('viewingInfo', false);
+    }, 500);
+  }
 });

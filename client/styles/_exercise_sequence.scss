@@ -4,11 +4,23 @@
 //background: #FFFFFF;
 //background-image: radial-gradient(50% 246%, rgba(255,255,255,0.14) 50%, rgba(0,0,0,0.14) 100%);
 
+.routine-sequence-wrapper {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	transition: all 1s ease;
+
+	&.fade-in {
+		opacity: 1;
+	}
+}
+
 .timer-group {
 	bottom: 3%;
 	width: 100%;
 	height: 41%;
-	//background-color: $darkBlue;
+	background-color: #020733;
 	position: absolute;
 }
 
@@ -17,7 +29,7 @@
 	line-height: 128px;
 	text-align: center;
 	color: $white;
-	border: 10px solid #4E6DA5;
+	border: 10px solid $green;
 	border-radius: 50%;
 	width: 150px;
 	height: 150px;
@@ -36,7 +48,7 @@
 	bottom: 0;
 	height: 30px;
 	line-height: 30px;
-	background-color: #4E6DA5;
+	background-color: #000000;
 	font-size: 16px;
 	z-index: 2;
 }
@@ -250,7 +262,8 @@
     width: 100%;
     height: calc(100% - 30px);
     //background-image: linear-gradient(-180deg, #BCD3F5 0%, #85AAEE 100%);
-    background-image: linear-gradient(-130deg, #76ADFF 0%, #345BA2 100%);
+    //background-image: linear-gradient(-130deg, #76ADFF 0%, #345BA2 100%);
+    background-color: #020733;
     z-index: 120;
     color: white;
     position: absolute;
