@@ -64,6 +64,7 @@
 	{{#if nextExercise}}
 		{{> nextExerciseModal}}
 	{{/if}}
+	{{#HammerTouchArea gestureMap=templateGestures}}
 	<div class="routine-sequence-wrapper">
 	{{#with activeExercise}}
 	<div class="active-exercise-wrapper">
@@ -95,4 +96,5 @@
 		<div class="active-exercise-progress">{{exercisesCompleted}}/{{totalExercises}}</div>
 	</div>
 	</div>
+	{{/HammerTouchArea}}
 </template>

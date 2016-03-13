@@ -78,6 +78,14 @@ Template.exerciseDetail.events({
 });
 
 Template.routineSequence.helpers({
+  templateGestures: {
+    'swiperight .routine-sequence-wrapper' :function() {
+        previousExercise();
+    },
+    'swipeleft .routine-sequence-wrapper': function() {
+        skipExercise();
+    }
+  },
   timer: function () {
     var time = Session.get('timer');
 

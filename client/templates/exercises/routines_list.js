@@ -2,36 +2,19 @@ Template.routinesList.helpers({
     settingReminders: function() {
       return Session.get('settingReminders');
     },
-    routines: function() {
-      var routines = Routines.find({}).fetch();
-      var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));
-      var userRoutines = [];
-
-      routines.forEach(function(routine) {
-        var routineId = routine._id;
-        var routineCompleted = false;
-
-        for (var i=0; i < routinesCompletedToday.length; i++) {
-          if (routinesCompletedToday[i] === routineId) {
-            routineCompleted = true;
-          }
+    templateGestures: {
+      'swiperight .routines-container' :function() {
+        var $routinesContainer = $('.routines-container');
+        if ($routinesContainer.hasClass('opened')) {
+          $routinesContainer.removeClass('opened');
+        } else {
+          $routinesContainer.addClass('opened');    
         }
-        routine.completed = routineCompleted;
-
-        userRoutines.push(routine);
-      });
-
-      //ensures routines are sorted
-      userRoutines.sort(function (a,b) {
-        if (a.id < b.id)
-          return -1;
-        else if (a.id > b.id)
-          return 1;
-        else 
-          return 0;
-      });
-
-      return userRoutines;
+        console.log('swipe');
+      },
+      'swipeleft .opened': function() {
+        $('.routines-container').removeClass('opened');
+      }
     },
 
     routinesMessage: function() {
@@ -74,22 +57,6 @@ Template.routinesList.helpers({
       return routinesMessage;
     },
 
-    // pauseID : function() {
-    //   var routines = Routines.find({}).fetch();
-    //   var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));//Meteor.user().routinesCompletedToday;
-    //   var pauseId = routines[0]._id;
-
-    //   for (var i=0; i < routines.length; i++) {
-    //     if (routinesCompletedToday.indexOf(routines[i]._id) < 0) {
-    //       pauseId = routines[i]._id;
- 
-    //       return pauseId;
-    //     }
-    //   }
-
-    //   return pauseId;
-
-    // },
     completedRoutines: function() {
         var routinesCompletedToday;
         var mostRecentDate = JSON.parse(localStorage.getItem('mostRecentDate'));

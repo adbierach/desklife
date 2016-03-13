@@ -1,4 +1,5 @@
 <template name="routinesList">
+{{#HammerTouchArea gestureMap=templateGestures}}
 {{#if settingReminders}}
 	{{> reminders}}
 {{/if}}
@@ -24,6 +25,7 @@
 {{#if viewingInfo}}
 	{{> desklifeInfo}}
 {{/if}}
+{{/HammerTouchArea}}
 </template>
 
 

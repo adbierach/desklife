@@ -24,3 +24,4 @@ fastclick
 iron:router
 msavin:mongol
 momentjs:moment
+chriswessels:hammer
