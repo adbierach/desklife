@@ -74,25 +74,37 @@ Template.routinesList.helpers({
       return routinesMessage;
     },
 
-    pauseID : function() {
-      var routines = Routines.find({}).fetch();
-      var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));//Meteor.user().routinesCompletedToday;
-      var pauseId = routines[0]._id;
+    // pauseID : function() {
+    //   var routines = Routines.find({}).fetch();
+    //   var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));//Meteor.user().routinesCompletedToday;
+    //   var pauseId = routines[0]._id;
 
-      for (var i=0; i < routines.length; i++) {
-        if (routinesCompletedToday.indexOf(routines[i]._id) < 0) {
-          pauseId = routines[i]._id;
+    //   for (var i=0; i < routines.length; i++) {
+    //     if (routinesCompletedToday.indexOf(routines[i]._id) < 0) {
+    //       pauseId = routines[i]._id;
  
-          return pauseId;
-        }
-      }
+    //       return pauseId;
+    //     }
+    //   }
 
-      return pauseId;
+    //   return pauseId;
 
-    },
+    // },
     completedRoutines: function() {
-        var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));
-        return routinesCompletedToday.length;
+        var routinesCompletedToday;
+        var mostRecentDate = JSON.parse(localStorage.getItem('mostRecentDate'));
+        //1 - 31 based on day of month
+        var today = moment().date();
+        //if it is new day, recent completed routines
+        if(today !== mostRecentDate) {
+          //set completed routines to empty array
+          localStorage.setItem('completedRoutines', '[]');
+          //returning 0 because we know length of array is 0
+          return 0;
+        } else {
+          routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));
+          return routinesCompletedToday.length;
+        }
     },
     routinesCount: function() {
         return Routines.find({}).fetch().length;

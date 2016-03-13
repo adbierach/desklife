@@ -329,6 +329,9 @@ completeRoutine = function(routine) {
     completedRoutines.push(routine._id);
     localStorage.setItem('completedRoutines', JSON.stringify(completedRoutines));
 
+    var today = moment().date();
+    localStorage.setItem('mostRecentDate', today);
+
     Router.go('/');
 }
 
