@@ -78,10 +78,9 @@
 	{{/with}}
 	<div class="timer-group">
 		<div class="show-pause-overlay"></div>
-		<!-- <img class="close align-vertical" src="/images/close.png"> -->
-<!-- 		{{#with activeExercise}}
-		<div class="active-exercise-title align-vertical">{{name}}</div>
-		{{/with}} -->
+		{{#with activeExercise}}
+		<div class="short-description align-horizontal">{{shortDescription}}</div>
+		{{/with}}
 		<div class="timer align-center">0:{{timer}}</div>
 
 		<div class="view-exercise-info">
