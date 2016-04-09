@@ -1,16 +1,6 @@
 var totalTimeLeft = 0;
 var timer = 0;
 
-
-Template.exitSequenceModal.events({
-  'click .return-to-routine': function() {
-    Session.set('exitingSequence', false);
-  },
-
-  'click .confirm-exit': function() {
-    Session.set('exitingSequence', false);
-  }
-});
 Template.pauseSequenceModal.onRendered( function () {
   setTimeout(function() {
       $('.pause-sequence-modal').addClass('show');

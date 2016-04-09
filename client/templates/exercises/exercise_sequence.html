@@ -1,20 +1,9 @@
-<template name="exitSequenceModal">
-	<div class="exit-sequence-modal">
-		<div class="exit-sequence-container align-center">
-			<div class="exit-sequence-title">
-				Are you sure you want to exit this routine?
-			</div>
-			<a href="/"><div class="confirm-exit exit-sequence-btn">Yes</div></a>
-			<div class="return-to-routine exit-sequence-btn">No</div>
-		</div>
-	</div>
 
-</template>
 <template name="pauseSequenceModal">
 	<div class="pause-sequence-modal">
 		<a href="/"><div class="exit-sequence exit-sequence-arrow-container">
 			<div class="exit-sequence-arrow"></div>
-			<div class="exit-sequence-text">exit</div>
+			<div class="exit-sequence-text">Exit</div>
 		</div></a>
 		<div class="function-group align-vertical">
 			<div class="prev-arrow align-vertical"></div>
@@ -57,9 +46,6 @@
 	{{/if}}
 	{{#if viewingExercise}}
 		{{> exerciseDetail}}
-	{{/if}}
-	{{#if exitingSequence}}
-		{{> exitSequenceModal}}
 	{{/if}}
 	{{#if nextExercise}}
 		{{> nextExerciseModal}}
