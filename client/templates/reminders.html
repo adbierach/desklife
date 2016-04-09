@@ -1,11 +1,13 @@
 <template name="reminders">
 	<div class="reminders-container">
-		<img class="close-reminders" src="/images/close.png">
 		<div class="reminders-message">6 reminders<br> 10am - 6pm</div>
 		<div class="reminders-toggle {{#if remindersOn}} on {{/if}}">
 			<div class="reminders-on">On</div>
 			<div class="reminders-off">Off</div>
 			<div class="switch"></div>
+		</div>
+		<div class="close-wrapper close-reminders">
+			<img class="close-exercise-detail align-center" src="/images/close_black.png">
 		</div>
 	</div>
 </template>

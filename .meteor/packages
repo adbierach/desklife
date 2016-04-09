@@ -21,6 +21,9 @@ spacebars
 check
 fourseven:scss
 fastclick
-iron:router
 msavin:mongol
 momentjs:moment
+chriswessels:hammer
+launch-screen
+force-ssl
+iron:router

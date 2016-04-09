@@ -11,9 +11,9 @@ Template.reminders.events({
 
   	'click .reminders-on' : function(e) {
   		e.preventDefault();
-  		Meteor.call('updateReminders', true);
+  		localStorage.setItem('remindersOn', true);
+  		$('.reminders-toggle').addClass('on');
   		if (Meteor.isCordova) {
-
 	  		var reminderTimesArray = reminder.buildReminderTimesArray();
 	  		reminder.setReminders(reminderTimesArray);
 	
@@ -23,7 +23,8 @@ Template.reminders.events({
   	},
   	'click .reminders-off' : function(e) {
   		e.preventDefault();
-  		Meteor.call('updateReminders', false);
+  		localStorage.setItem('remindersOn', false);
+  		$('.reminders-toggle').removeClass('on');
   		if (Meteor.isCordova) {
   			reminder.cancelAllReminders();
   		}
@@ -32,7 +33,8 @@ Template.reminders.events({
 
 Template.reminders.helpers({
 	remindersOn : function() {
-		return Meteor.user().remindersOn;
+		console.log(JSON.parse(localStorage.getItem('remindersOn')));
+		return JSON.parse(localStorage.getItem('remindersOn'));
 	}
 });
 
@@ -135,7 +137,6 @@ var reminder = {
 		remindersDateArray.forEach(function (date, index) {
 			reminder = {
 				id: index + 1,
-				title: 'Hey there,',
 				text: 'Time to take a break?',
 				at: date,
 				every: 'day'

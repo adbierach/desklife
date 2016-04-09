@@ -11,6 +11,7 @@ caching-compiler@1.0.0
 caching-html-compiler@1.0.2
 callback-hook@1.0.4
 check@1.1.0
+chriswessels:hammer@4.0.2
 dburles:mongo-collection-instances@0.3.4
 ddp@1.2.2
 ddp-client@1.2.1
@@ -22,6 +23,7 @@ ecmascript@0.1.6
 ecmascript-runtime@0.2.6
 ejson@1.0.7
 fastclick@1.0.7
+force-ssl@1.0.6
 fourseven:scss@3.4.1
 geojson-utils@1.0.4
 hot-code-push@1.0.0

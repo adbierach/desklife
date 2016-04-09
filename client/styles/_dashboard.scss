@@ -5,31 +5,25 @@
 	left: 0;
 	top: 0;
 	z-index: 0;
-	background-color: $darkBlue;
+	background-color: #020733;
 
 }
 
 .logout, .clear-routines, .reminders {
-	text-align: center;
+	//text-align: center;
     margin-top: 15px;
     font-size: 25px;
     color: $white;
-}
-.dashboard-message-group {
-	width: 100%;
+    margin-left: 10%;
+    font-weight: 300;
 }
 
-.dashboard-message {
-	font-size: 18px;
-	color: $white;
-	text-align: center;
-}
 
 .desklife-logo {
 	width: 80%;
 	min-width: 202px;
-	margin: 0 auto 10px;
-	background-color: $darkBlue;
+	margin: 40px auto 10px;
+	background-color: #020733;
 	text-align: center;
 	border: 2px solid $white;
 	border-radius: 10px;
@@ -42,7 +36,7 @@
 }
 
 .desklife-slogan {
-	color: $gioGreen;
+	color: #02b875;
 	font-size: 16px;
 	padding-bottom: 8px;
 }
