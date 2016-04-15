@@ -9,13 +9,15 @@
 
 }
 
-.logout, .clear-routines, .reminders {
+.logout, .clear-routines, .reminders, .dashboard-item {
 	//text-align: center;
-    margin-top: 15px;
     font-size: 25px;
     color: $white;
     margin-left: 10%;
     font-weight: 300;
+    padding: 25px 0;
+    border-bottom: 1px solid $white;
+    width: 80%;
 }
 
 
@@ -39,4 +41,17 @@
 	color: #02b875;
 	font-size: 16px;
 	padding-bottom: 8px;
+}
+
+
+.about-container {
+	.info-title {
+		text-align: center;
+	}
+	.info-text-group {
+		width: 90%;
+	}
+	.info-text {
+		margin-bottom: 30px;
+	}
 }

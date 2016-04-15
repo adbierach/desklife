@@ -1,4 +1,4 @@
-.reminders-container {
+.reminders-container, .principles-container, .about-container {
 	width: 100%;
 	height: 100%;
 	//background-color: $darkBlue;
@@ -10,6 +10,8 @@
 	z-index: 1;
 	transform: translateY(100%);
 	transition: all 0.3s ease;
+	color: #000000;
+	overflow-y: auto;
 
 	&.show {
 		transform: translateY(0);

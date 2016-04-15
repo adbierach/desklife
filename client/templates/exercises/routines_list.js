@@ -2,6 +2,12 @@ Template.routinesList.helpers({
     settingReminders: function() {
       return Session.get('settingReminders');
     },
+    viewingPrinciples: function() {
+      return Session.get('viewingPrinciples');
+    },
+    viewingAbout: function() {
+      return Session.get('viewingAbout');
+    },
     templateGestures: {
       'swiperight .routines-container' :function() {
         var $routinesContainer = $('.routines-container');

@@ -1,8 +1,14 @@
 <template name="routinesList">
-{{#HammerTouchArea gestureMap=templateGestures}}
 {{#if settingReminders}}
 	{{> reminders}}
 {{/if}}
+{{#if viewingPrinciples}}
+	{{> principles}}
+{{/if}}
+{{#if viewingAbout}}
+	{{> about}}
+{{/if}}
+{{#HammerTouchArea gestureMap=templateGestures}}
 {{> dashboard}}
 <div class="routines-container">
 	<header class="routines-header">
