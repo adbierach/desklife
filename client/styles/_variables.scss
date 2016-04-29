@@ -27,4 +27,7 @@ $bgColor1: $gioLightBlue;
 $bgColor2: $gioLightBlue;
 $dashboardColor: $hsDarkGrey;
 
-$animation: 0.3s ease-out;
+//$animation: 0.3s ease-out;
+$animation: 0.5s cubic-bezier(0.23,1.44,0.62,0.85);
+//$overlayAnimation: 0.5s cubic-bezier(0.23,1.44,0.62,0.85);
+$overlayAnimation: 0.3s ease-out;

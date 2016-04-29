@@ -154,7 +154,7 @@
 	z-index: 1;
 	color: #000000;
 	transform: translateY(100%);
-	transition: all 0.3s ease;
+	transition: all $overlayAnimation;
 	text-align: center;
 
 	&.show {
