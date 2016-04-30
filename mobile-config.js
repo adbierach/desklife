@@ -34,7 +34,7 @@ App.setPreference('DisallowOverscroll', true);
 App.setPreference('StatusBarStyle', 'lightcontent');
 App.setPreference('StatusBarBackgroundColor', '#000000');
 
-App.accessRule("http://app.desklife.io");
+App.accessRule("https://app.desklife.io");
 // Pass preferences for a particular PhoneGap/Cordova plugin
 // App.configurePlugin('com.phonegap.plugins.facebookconnect', {
 //   APP_ID: '1234567890',
