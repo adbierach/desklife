@@ -1,10 +1,10 @@
 Template.routinesList.helpers({
-    settingReminders: function() {
-      return Session.get('settingReminders');
-    },
-    viewingPrinciples: function() {
-      return Session.get('viewingPrinciples');
-    },
+    // settingReminders: function() {
+    //   return Session.get('settingReminders');
+    // },
+    // viewingPrinciples: function() {
+    //   return Session.get('viewingPrinciples');
+    // },
     viewingAbout: function() {
       return Session.get('viewingAbout');
     },

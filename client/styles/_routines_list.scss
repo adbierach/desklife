@@ -155,7 +155,7 @@
 	color: #000000;
 	transform: translateY(100%);
 	transition: all $overlayAnimation;
-	text-align: center;
+	//text-align: center;
 
 	&.show {
 		transform: translateY(0);
@@ -183,6 +183,11 @@
 .info-text {
 	font-size: 20px;
 	font-weight: 300;
+	margin-bottom: 20px;
+}
+
+.emphasis {
+	font-weight: 500;
 }
 
 
