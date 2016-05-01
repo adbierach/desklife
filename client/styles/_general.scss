@@ -10,6 +10,7 @@ html, body {
 	height: 100%;
 	color: $primaryText;
 	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-overflow-scrolling: touch;
 	overflow-x: hidden;
 	font-family: 'Lato', sans-serif;
 

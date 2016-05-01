@@ -10,9 +10,9 @@ Meteor.startup(function() {
     	localStorage.setItem('mostRecentDate', today);
 	}
 
-	if (!localStorage.getItem('remindersOn')) {
-		//default to reminders being off
-    	localStorage.setItem('remindersOn', false);
-	}
+	// if (!localStorage.getItem('remindersOn')) {
+	// 	//default to reminders being off
+ //    	localStorage.setItem('remindersOn', false);
+	// }
 
 });
