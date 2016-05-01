@@ -101,7 +101,7 @@ Template.routinesList.events({
 
     },
     'click .start-btn': function() {
-      var routines = Routines.find({}).fetch();
+      var routines = Routines.find({}, {sort: {id : 1}}).fetch();
       var routinesCompletedToday = JSON.parse(localStorage.getItem('completedRoutines'));//Meteor.user().routinesCompletedToday;
       var pauseId = routines[0]._id;
 
