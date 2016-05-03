@@ -13,7 +13,9 @@ App.info({
 App.icons({
   'iphone': 'icons/iphone.icon.png',
   'iphone_2x': 'icons/iphone_2x.icon.png',
-  'iphone_3x': 'icons/iphone_3x.icon.png'
+  'iphone_3x': 'icons/iphone_3x.icon.png',
+  'ipad': 'icons/ipad.icon.png',
+  'ipad_2x': 'icons/ipad_2x.icon.png'
   // ... more screen sizes and platforms ...
 });
 
